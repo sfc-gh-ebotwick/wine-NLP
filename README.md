@@ -21,6 +21,26 @@ Also thank you to the authors of the following articles found online for their h
 https://towardsdatascience.com/make-your-own-super-pandas-using-multiproc-1c04f41944a1
 https://www.datacamp.com/community/tutorials/wordcloud-python
 
+## Crisp-DM overview of Project
+
+### Business Understanding 
+
+Wine in the U.S. alone is a $70 billion dollar industry. Understanding the intricies of the differnces in what makes a good wine and what makes a great wine can be extremely profitable. Additionally, wine quality modeling serves as a proxy use case to demonstrate the value of IBM Watson NLU tooling that can be applicable in nearly any industry. 
+
+### Data Understanding
+
+A considerable amount of time was spent carrying out Exploratory Data Analysis (EDA). Findings varied from discovering a large portion of rows were duplciate records to understanding complex patterns in specific wine varieties and locations. Thorough EDA helped greatly in directing what data preperation steps were necessary to best model this data. 
+
+### Prepare Data
+
+A huge portion of this project was dedicated to finding answers to difficult data preperation tasks. This includes dealing with high cardinality cateogrical variables and imputing missing values in a hierarchical data pattern. 
+
+### Data Modeling
+
+This use case required modeling a continuous target (points given in a wine review) on a scale of [0, 100] modeling didn't actually represent a huge challenge in this use case. Two series of model training took place, one with the base set of features and one with added features representing the emotional breakdown of the description. For each round of model training a linear regression and a gradient boosted model were fitted. The gradient boosted model was superior in each case and the model with the emotion features outperformed the models without those features. 
+
+### Evaluating Results
+
 ## Packages used 
 
 The development environment used was Python 3.6 in a Jupyter Notebook on Watson Studio cloud. The pip list from the notebook is below:
