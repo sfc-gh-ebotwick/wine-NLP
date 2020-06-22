@@ -17,6 +17,10 @@ The specific file used was *winemag-data_first150k.csv* This file contains wine 
 
 Thank you to Stefan van der Stockt and Catherine Cao for their help in forming approaches and using NLU APIs. 
 
+Also thank you to the authors of the following articles found online for their helpfulness in various areas:
+https://towardsdatascience.com/make-your-own-super-pandas-using-multiproc-1c04f41944a1
+https://www.datacamp.com/community/tutorials/wordcloud-python
+
 ## Packages used 
 
 The development environment used was Python 3.6 in a Jupyter Notebook on Watson Studio cloud. The pip list from the notebook is below:
