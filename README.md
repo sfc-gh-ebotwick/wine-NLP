@@ -40,7 +40,7 @@ A huge portion of this project was dedicated to finding answers to difficult dat
 
 One of the first steps I took in assessing the quality of this data was to inspect the proportion of unique values in each categorical variable. The results I found provided a good few challenges down the road. Here is a grape-themed visualization showing the breakdown of unique values in categorical feature:
 
-./images/UniqueNonUniquePlot.png
+![UniqueNonUniquePlot](/images/UniqueNonUniquePlot.png)
 
 The greater the sliver of green on the chart, the greater the number of values that category has
 
@@ -54,7 +54,7 @@ I used the pandas drop_duplicates() function for a quick and easy solution to th
 
 In the spirit of keeping a common format, I created a similar visualization for the proportion of null values in each column. Here are some more grapes:
 
-../images/nullNonNull.png
+![nullNonNullPlot](/images/nullNonNull.png)
 
 Fortunately several of the fields were entirely populated, and some of the scarcely populated fields were found to have low associations with the target (points) were likely going to be dropped anyways.
 
@@ -80,7 +80,7 @@ This ended up being the area of data prep I probably spent the most time on — 
 For categorical variables with > 100 levels, the first N levels to make up 95% of all values in the column were identified and all other levels were cast to ‘other’. Those columns were then one-hot encoded. If it took more than 100 levels to make up 95% of all values in the column I decided to either take the first 100 values and one-hot encode or just to index the column (I know, I know) on a case-by-case basis.
 A screenshot of the notebook showing how we found that the 98 most popular varieties make up 95% of all varieties
 
-nbscreenshot.png
+![notebookScreenshot](/images/reducingDimensoinalityofCateogoricalColumns.png)
 
 Some features, such as winery, needed over 1000 levels to make up 95% of all values. That column was simply indexed here but in future analysis an approach that may be worth taking is doing some clustering of those columns to form logical grouping of winery values and reduce dimensionality by replacing the original value with a cluster value.
 
