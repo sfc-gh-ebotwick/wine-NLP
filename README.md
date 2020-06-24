@@ -41,6 +41,18 @@ This use case required modeling a continuous target (points given in a wine revi
 
 ### Evaluating Results
 
+Mean Squared Error (MSE) and R^2 were the two primary metrics used to evaluate the models created in this project. 
+
+For the baseline model (no NLP) the performance metrics on the test set were as follows:
+Linear Regression: MSE - 4.354; R^2 - 0.580
+Gradient Boosted Regressor: MSE - 4.290; R^2 - 0.587
+
+For the enhanced model (with NLP) the performance metrics on the test set were as follows:
+Linear Regression: MSE - 4.146; R^2 - 0.601
+Gradient Boosted Regressor : MSE - **4.103**; R^2 - **0.605**
+
+The gradient boosted regressor trained on the enhanced data with NLP applied showed as the strongest model in this case. 
+
 ## Packages used 
 
 The development environment used was Python 3.6 in a Jupyter Notebook on Watson Studio cloud. The pip list from the notebook is below:
