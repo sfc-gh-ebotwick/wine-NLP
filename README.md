@@ -33,7 +33,58 @@ A considerable amount of time was spent carrying out Exploratory Data Analysis (
 
 ### Prepare Data
 
-A huge portion of this project was dedicated to finding answers to difficult data preperation tasks. This includes dealing with high cardinality cateogrical variables and imputing missing values in a hierarchical data pattern. 
+A huge portion of this project was dedicated to finding answers to difficult data preperation tasks. This includes dealing with high cardinality cateogrical variables and imputing missing values in a hierarchical data pattern. The following sections detail the data preperation that went into this project:
+
+
+#### Duplicate Rows:
+
+One of the first steps I took in assessing the quality of this data was to inspect the proportion of unique values in each categorical variable. The results I found provided a good few challenges down the road. Here is a grape-themed visualization showing the breakdown of unique values in categorical feature:
+
+UniqueNonUniquePlot.png
+
+The greater the sliver of green on the chart, the greater the number of values that category has
+
+Naturally the description field makes sense as the most unique column here — there’s only so many countries or wine varieties in the world but essentially limitless permutations of an open text field. However, as can be seen above, the description field is still a long way from being 100% unique. This helped lead to the discovery that around 1/3 of this data were duplicate records.
+
+I used the pandas drop_duplicates() function for a quick and easy solution to the replicated rows.
+
+```wine.drop_duplicates(subset = ['description', 'winery', 'variety', 'country', 'province'],inplace = True)```
+
+#### Missing Values
+
+In the spirit of keeping a common format, I created a similar visualization for the proportion of null values in each column. Here are some more grapes:
+
+NullNotNull.png
+
+Fortunately several of the fields were entirely populated, and some of the scarcely populated fields were found to have low associations with the target (points) were likely going to be dropped anyways.
+
+Before explaining how missing values in region_1 were handled I’d like to clarify the location variable hierarchy a bit in case it may be unclear:
+
+country > province > region_1 > region_2
+
+So to deal with the missing values in region_1 I created a dict that contained each unique value of province and the highest occurring value of region_1 for that province. Then with a lambda function, the missing values in region_1 were imputed with the most common region in that province. You can see the code below:
+```
+regionDict = {}for p in wine.province.value_counts().index:
+    if len(wine[wine.province ==p].region_1.value_counts()) < 1:
+        regionDict.update({p: 'NoListedRegion'})
+    else:
+        regionDict.update({p:  wine[wine.province == p].region_1.value_counts().index[0]})
+wine['region_1_imputed'] = wine[['province', 'region_1']].apply(lambda row: row.fillna(value = regionDict.get(row['province'])), axis = 1).loc[:, 'region_1']=
+```
+Some provinces didn’t have any listed regions, if this was the case the null value was replaced with ‘NoListedRegion’.
+
+#### Dealing with Categorical Variables with high cardinality
+
+This ended up being the area of data prep I probably spent the most time on — partially because it was difficult and partially because it was interesting. With some help from a few very clever friends and colleagues, I came up with a methodology I believe worked out well.
+
+For categorical variables with > 100 levels, the first N levels to make up 95% of all values in the column were identified and all other levels were cast to ‘other’. Those columns were then one-hot encoded. If it took more than 100 levels to make up 95% of all values in the column I decided to either take the first 100 values and one-hot encode or just to index the column (I know, I know) on a case-by-case basis.
+A screenshot of the notebook showing how we found that the 98 most popular varieties make up 95% of all varieties
+
+nbscreenshot.png
+
+Some features, such as winery, needed over 1000 levels to make up 95% of all values. That column was simply indexed here but in future analysis an approach that may be worth taking is doing some clustering of those columns to form logical grouping of winery values and reduce dimensionality by replacing the original value with a cluster value.
+
+At this point we did have our data ready to train some models and created a gradient boosted model with an Adjusted R² value of 0.586 and a MSE of 4.29. Not bad but lets see what we can do to improve!
 
 ### Data Modeling
 
