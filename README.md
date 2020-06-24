@@ -40,7 +40,7 @@ A huge portion of this project was dedicated to finding answers to difficult dat
 
 One of the first steps I took in assessing the quality of this data was to inspect the proportion of unique values in each categorical variable. The results I found provided a good few challenges down the road. Here is a grape-themed visualization showing the breakdown of unique values in categorical feature:
 
-UniqueNonUniquePlot.png
+./images/UniqueNonUniquePlot.png
 
 The greater the sliver of green on the chart, the greater the number of values that category has
 
@@ -54,7 +54,7 @@ I used the pandas drop_duplicates() function for a quick and easy solution to th
 
 In the spirit of keeping a common format, I created a similar visualization for the proportion of null values in each column. Here are some more grapes:
 
-NullNotNull.png
+../images/nullNonNull.png
 
 Fortunately several of the fields were entirely populated, and some of the scarcely populated fields were found to have low associations with the target (points) were likely going to be dropped anyways.
 
