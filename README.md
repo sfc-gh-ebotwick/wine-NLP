@@ -27,11 +27,25 @@ https://www.datacamp.com/community/tutorials/wordcloud-python
 
 Wine in the U.S. alone is a $70 billion dollar industry. Understanding the intricies of the differnces in what makes a good wine and what makes a great wine can be extremely profitable. Additionally, wine quality modeling serves as a proxy use case to demonstrate the value of IBM Watson NLU tooling that can be applicable in nearly any industry. 
 
+Three questions we will seek to answer (and the reasons we asked them) throughout this analysis are - 
+
+1. How can we use high cardinality categorical data effectively in model training?
+
+Why? This represents an extermely common and extremely difficult area of training machine learning models - by applying creative solutions to this problem we can preserve useful information while supplying ML algorithms with well formatted data.  
+
+2. How can we improve the efficiency of compute-heavy functions against pandas dataframes?
+
+Why? Several operations used in this analysis are computationally intensive. Finding ways to improve the efficiency not only speeds up the analysis of this data but also allows for scalability of these methods to even larger data sets.
+
+3. Can we extract meaningful information from the description field to improve model performance?
+
+Why? Often text data gets thrown in the bucket of 'dark data' however there is certainly valuable information within free text fields. Applying natural language processing APIs can help us turn free text into numerical data which can then be used as model inputs and improve model performance. 
+
 ### Data Understanding
 
 A considerable amount of time was spent carrying out Exploratory Data Analysis (EDA). Findings varied from discovering a large portion of rows were duplciate records to understanding complex patterns in specific wine varieties and locations. Thorough EDA helped greatly in directing what data preperation steps were necessary to best model this data. 
 
-### Prepare Data
+### Data Preperation
 
 A huge portion of this project was dedicated to finding answers to difficult data preperation tasks. This includes dealing with high cardinality cateogrical variables and imputing missing values in a hierarchical data pattern. The following sections detail the data preperation that went into this project:
 
