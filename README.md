@@ -8,6 +8,14 @@ Notebook originally authored by Elliott Botwick on Watson Studio Cloud.
 The purpose of this project was to first apply data science best practices in building out a regression model predicting the quality of various wines, and then to bolster that model using Watson Natural Language Understanding (NLU) APIs. More background on the motivation in the project can be found in the Medium article write up - https://medium.com/@elliott.botwick_90525/end-to-end-wine-quality-modeling-with-a-boost-from-watson-nlp-services-8ebfd4137f6c?sk=3e471d765e570da1788678a26b7516e8
 
 
+## Problem Statement
+
+Does the application of natural langugage processing techniques help to increase the performance of a regression based model on a sparse number of factors describing the quality of various wines?
+
+## Metrics
+
+We will use Mean Squared Error and Adjusted R^2 to measure the performance of various regression models in this case. The results will be reported in terms of these metrics in the ***Evaluating Results*** section. 
+
 ## Data
 
 The data used in this analysis can be found on Kaggle's Wine Reviews project page: https://www.kaggle.com/zynicide/wine-reviews
